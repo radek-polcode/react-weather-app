@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import './index.css';
 import json_data from '../../containers/data.js';
+import OverallInfo from './OverallInfo';
 
 export default class extends Component {
   state = { weather_data: json_data }
@@ -15,8 +16,10 @@ export default class extends Component {
   }
 
   render() {
+    const overall_info = json_data['data']['city']
     return(
-      <div className="weather-block">
+      <div>
+        <OverallInfo />
       </div>
     )
   }
