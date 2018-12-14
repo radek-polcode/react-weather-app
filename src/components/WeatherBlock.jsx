@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Row } from 'reactstrap';
 
 import './WeatherBlock.css';
 import json_data from '../containers/data.js';
@@ -18,7 +17,6 @@ export default class WeatherBlock extends Component {
   }
 
   render() {
-    const overall_info = json_data['data']['city']
     return(
       <div className="weather-block">
         <DailyWeatherBlock />
