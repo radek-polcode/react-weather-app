@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 import './index.css';
 import json_data from '../../containers/data.js';
 import OverallInfo from './OverallInfo';
+import DetailedInfo from './DetailedInfo';
+import DailyChart from './DailyChart';
+import WeeklyWeatherList from '../WeeklyWeatherList';
 
 export default class extends Component {
   state = { weather_data: json_data }
@@ -20,6 +23,8 @@ export default class extends Component {
     return(
       <div>
         <OverallInfo />
+        <DetailedInfo />
+        <DailyChart />
       </div>
     )
   }

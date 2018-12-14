@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Col, Row } from 'reactstrap';
 
 export default class extends Component {
   static propTypes = {
@@ -8,9 +9,11 @@ export default class extends Component {
 
   render() {
     return (
-      <div>
-        <h4>Weekly list</h4>
-      </div>
+      <Row>
+        <Col>
+          <h4>Weekly list</h4>
+        </Col>
+      </Row>
     )
   }
 }
