@@ -2,7 +2,7 @@ const jsonData = {
   "data": {
     "city": {
       "current_day": "friday",
-      "main_info": {
+      "city_info": {
         "name": "Barcelona",
         "country": "Spain"
       },
