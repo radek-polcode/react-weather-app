@@ -1,0 +1,25 @@
+.detailedInfo {
+
+}
+
+.detailedInfo__image {
+  float: left;
+  margin-top: 15px;
+}
+
+.detailedInfo__currentTemperature {
+  font-size: 64px;
+  padding-left: 10px;
+}
+
+.detailedInfo__temperatureBlock {
+  float: left;
+}
+
+.detailedInfo__units {
+  display: block;
+  float: right;
+  margin-top: 18px;
+  vertical-align: top;
+}
+

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap';
 
 import { capitalizeText } from '../../utils/capitalizeText';
+import './OverallInfo.css';
 
 OverallInfo.defaultProps = {
   cityInfo: {},
@@ -23,7 +24,7 @@ function OverallInfo({ cityInfo, currentDay, currentDayWeather }) {
   return (
     <Row>
       <Col>
-        <h2>{cityName}, {country}</h2>
+        <h2 className="city-info">{cityName}, {country}</h2>
         <p>{capitalizeText(currentDay)}</p>
         <p>{description}</p>
       </Col>

@@ -5,6 +5,11 @@
   height: 100vh;
 }
 
+h2, h3, p {
+  color: #878787 !important;
+  margin: 0px !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
