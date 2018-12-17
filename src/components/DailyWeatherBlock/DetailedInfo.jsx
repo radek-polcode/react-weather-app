@@ -2,11 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup, Col, Row } from 'reactstrap';
 
-function DetailedInfo(props) {
+import { createImageUrl } from '../../utils/createImageUrl';
+
+function DetailedInfo({ currentDayWeather }) {
+  const dayDescription = currentDayWeather['description']
   return (
     <Row>
       <Col xs="6">
-        <div style={{float: 'left'}}>Image</div>
+        <div 
+          style={{float: 'left'}}
+        >
+          <img src={createImageUrl('64', dayDescription)}></img>
+        </div>
         <div style={{float: 'right'}}>Temperature</div>
       </Col>
       <Col xs="6">

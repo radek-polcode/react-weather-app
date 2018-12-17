@@ -33,7 +33,7 @@ export default class extends Component {
           currentDay={currentDay}
           currentDayWeather={currentDayWeather}
         />
-        <DetailedInfo />
+        <DetailedInfo currentDayWeather={currentDayWeather} />
         <DailyChart />
       </div>
     )
