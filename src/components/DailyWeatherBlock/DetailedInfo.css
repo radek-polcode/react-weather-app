@@ -2,6 +2,27 @@
 
 }
 
+.detailedInfo__details {
+  padding-top: 15px;
+}
+
+.detailedInfo__details .btn-group {
+  padding-top: 15px;
+}
+
+.detailedInfo__details .btn-group button {
+  background-color:#f6f6f6;
+  border: 1px solid #c6c6c6;
+  color: #222;
+  font-size: 11px;
+  font-weight: 700px;
+}
+
+.detailedInfo__details .btn-group button:active {
+  /* background-image: -webkit-linear-gradient(top,#f6f6f6,#f1f1f1); */
+  /* box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); */
+}
+
 .detailedInfo__image {
   float: left;
   margin-top: 15px;

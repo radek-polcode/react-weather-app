@@ -8,6 +8,7 @@ import './DetailedInfo.css';
 function DetailedInfo({ currentDayWeather }) {
   const dayDescription = currentDayWeather['description']
   const currentTemperature = currentDayWeather['temperature']['max']
+  const conditions = currentDayWeather['conditions'] 
   return (
     <Row className="detailedInfo">
       <Col xs="6">
@@ -21,14 +22,16 @@ function DetailedInfo({ currentDayWeather }) {
         </div>
       </Col>
       <Col xs="6">
-        <p>Precipitation</p>
-        <p>Humidity</p>
-        <p>Wind</p>
-        <ButtonGroup>
-          <Button size="sm">Temperature</Button>
-          <Button size="sm">Precipitation</Button>
-          <Button size="sm">Wind</Button>
-        </ButtonGroup>
+        <div className="detailedInfo__details">        
+          <p>Precipitation: {conditions.precipitation} </p>
+          <p>Humidity: {conditions.humidity}</p>
+          <p>Wind: {conditions.wind}</p>
+          <ButtonGroup>
+            <Button size="sm">Temperature</Button>
+            <Button size="sm">Precipitation</Button>
+            <Button size="sm">Wind</Button>
+          </ButtonGroup>
+        </div>
       </Col>
     </Row>
   )
