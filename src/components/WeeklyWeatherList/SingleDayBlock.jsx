@@ -24,18 +24,19 @@ export default class SingleDayBlock extends Component {
     dayName: ''
   }
 
-  handleOnClick = () => {
-    this.setState(
-      prevState => ({clicked: !prevState.clicked})
-    )
+  handleOnClick() {
+    const onSelect = this.props.onSelect
+    const index = this.props.blockIndex
+    onSelect(index)
   }
 
   render() {
     const weatherDescription = this.state.dayilyWeatherInfo['description']
     const blockClass = 'singleDayBlock'
+    const isActive = this.props.isActive
     return (
-      <div className={this.state.clicked ? blockClass + ' active' : blockClass}
-            onClick={this.handleOnClick}>
+      <div className={isActive ? blockClass + ' active' : blockClass}
+            onClick={this.handleOnClick.bind(this)}>
         <div className="singleDayBlock__dayName">
           <span>
             {capitalizeText(this.state.dayName.substr(0, 3))}
