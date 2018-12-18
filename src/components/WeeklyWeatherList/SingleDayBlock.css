@@ -1,0 +1,40 @@
+.singleDayBlock {
+  border: 1px solid #ffffff;
+  display: inline-block;
+  float: left;
+  height: 90px;
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+  width: 73px;
+}
+
+.active {
+  background-color: #fcfcfc;
+  border: 1px solid #e9e9e9;
+  border-radius: 1px;
+}
+
+.singleDayBlock__dayName {
+  line-height: 15px;
+  padding-top: 7px;
+}
+
+.sigleDayBlock__image {
+  display: inline-block;
+}
+
+.sigleDayBlock__temp {
+  font-weight: normal;
+  line-height: 15px;
+  font-size: 13px;
+}
+
+.sigleDayBlock--dayTemp {
+  color: #878787 !important;
+  padding-right: 5px;
+}
+
+.sigleDayBlock--nightTemp {
+  color: #bababa !important;
+}

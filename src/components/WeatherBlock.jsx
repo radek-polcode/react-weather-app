@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import './WeatherBlock.css';
-import json_data from '../containers/data.js';
+import jsonData from '../containers/data.js';
 import DailyWeatherBlock from './DailyWeatherBlock';
 import WeeklyWeatherList from './WeeklyWeatherList';
 
 export default class WeatherBlock extends Component {
-  state = { weather_data: json_data }
+  state = { weatherData: jsonData }
 
   static propTypes = {}
   static defaultProps = {}
@@ -17,10 +17,11 @@ export default class WeatherBlock extends Component {
   }
 
   render() {
+    const weeklyForecast = this.state.weatherData['data']['city']['weekly_forecast']
     return(
       <div className="weather-block">
         <DailyWeatherBlock />
-        <WeeklyWeatherList />
+        <WeeklyWeatherList weeklyForecast={weeklyForecast} />
       </div>
     )
   }
