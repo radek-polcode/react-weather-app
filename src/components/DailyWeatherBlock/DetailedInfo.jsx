@@ -12,9 +12,10 @@ function DetailedInfo({ currentDayWeather }) {
   return (
     <Row className="detailedInfo">
       <Col xs="6">
-        <img
-          className="detailedInfo__image" 
-          src={createImageUrl('64', dayDescription)}>
+        <img className="detailedInfo__image" 
+             src={createImageUrl('64', dayDescription)}
+             alt="weather-thumbnail"
+        >
         </img>
         <div className="detailedInfo__temperatureBlock">
           <span className="detailedInfo__currentTemperature">{currentTemperature}</span>
@@ -22,7 +23,7 @@ function DetailedInfo({ currentDayWeather }) {
         </div>
       </Col>
       <Col xs="6">
-        <div className="detailedInfo__details">        
+        <div className="detailedInfo__details">    
           <p>Precipitation: {conditions.precipitation} </p>
           <p>Humidity: {conditions.humidity}</p>
           <p>Wind: {conditions.wind}</p>
