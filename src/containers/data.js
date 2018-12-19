@@ -16,8 +16,6 @@ const jsonData = {
         "friday": {
           "description": "Partly Cloudy",
           "temperature": {
-            "max": "13",
-            "min": "6",
             "hourly": [
               "11","13","13","12","9","8","7","7","7"
             ]
@@ -31,8 +29,6 @@ const jsonData = {
         "saturday": {
           "description": "Partly Cloudy",
           "temperature": {
-            "max": "13",
-            "min": "6",
             "hourly": [
               "8","7","7","7","11","13","12","10","10"
             ]
@@ -46,8 +42,6 @@ const jsonData = {
         "sunday": {
           "description": "Scattered Showers",
           "temperature": {
-            "max": "13",
-            "min": "6",
             "hourly": [
               "10","10","9","10","13","14","13","12","11"
             ]
@@ -61,8 +55,6 @@ const jsonData = {
         "monday": {
           "description": "Mostly Sunny",          
           "temperature": {
-            "max": "13",
-            "min": "6",
             "hourly": [
               "11","9","8","8","12","14","11","8","7"
             ]
@@ -76,8 +68,6 @@ const jsonData = {
         "tuesday": {
           "description": "Partly Cloudy",
           "temperature": {
-            "max": "13",
-            "min": "6",
             "hourly": [
               "7","6","6","6","12","14","12","12","12"
             ]
@@ -91,8 +81,6 @@ const jsonData = {
         "wednesday": {
           "description": "Cloudy",
           "temperature": {
-            "max": "13",
-            "min": "6",
             "hourly": [
               "12","11","10","10","13","13","12","11","9"
             ]
@@ -106,8 +94,6 @@ const jsonData = {
         "thursday": {
           "description": "Scattered Showers",
           "temperature": {
-            "max": "13",
-            "min": "6",
             "hourly": [
               "9","8","8","8","11","12","11","9","8"
             ]
@@ -121,8 +107,6 @@ const jsonData = {
         "friday_next": {
           "description": "Partly Cloudy",
           "temperature": {
-            "max": "13",
-            "min": "6",
             "hourly": [
               "8","7","7","8","11","13","11","9","8"
             ]
