@@ -1,5 +1,6 @@
 .singleDayBlock {
   border: 1px solid #ffffff;
+  cursor: pointer;
   display: inline-block;
   float: left;
   height: 90px;
