@@ -17,10 +17,11 @@ export default class WeatherBlock extends Component {
   }
 
   render() {
+    const weatherData = this.state.weatherData['data']
     const weeklyForecast = this.state.weatherData['data']['city']['weekly_forecast']
     return(
       <div className="weather-block">
-        <DailyWeatherBlock />
+        <DailyWeatherBlock weatherData={weatherData}/>
         <WeeklyWeatherList weeklyForecast={weeklyForecast} />
       </div>
     )

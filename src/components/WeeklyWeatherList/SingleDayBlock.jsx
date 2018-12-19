@@ -30,7 +30,6 @@ export default class SingleDayBlock extends Component {
     const isActive = this.props.isActive
     const weatherDescription = this.props.dayilyWeatherInfo['description']
     const temperatures = this.props.dayilyWeatherInfo['temperature']['hourly']
-    console.log(temperatures)
     return (
       <div className={isActive ? blockClass + ' active' : blockClass}
             onClick={this.handleOnClick.bind(this)}>
