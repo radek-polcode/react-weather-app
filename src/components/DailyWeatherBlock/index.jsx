@@ -6,24 +6,23 @@ import OverallInfo from './OverallInfo';
 import DetailedInfo from './DetailedInfo';
 import DailyChart from './DailyChart';
 export default class extends Component {
-  state = { weatherData: this.props.weatherData }
-  
   static propTypes = {
-    weatherData: PropTypes.object.isRequired
+    weatherData: PropTypes.object.isRequired,
+    currentDay: PropTypes.string.isRequired
   }
 
   static defaultProps = {
-    weatherData: {}
+    weatherData: {},
+    currentDay: ''
   }
 
   render() {
-    const weatherData = this.state.weatherData
+    let weatherData = this.props.weatherData
     const cityInfo = weatherData['city']['city_info']
-    // will be dynamic
-    const currentDay = weatherData['city']['current_day']
-    // will be dynamic
-    const currentDayWeather = weatherData['city']['weekly_forecast'][currentDay]
-
+    
+    let currentDay = this.props.currentDay
+    
+    let currentDayWeather = weatherData['city']['weekly_forecast'][currentDay]
     return(
       <div>
         <OverallInfo 

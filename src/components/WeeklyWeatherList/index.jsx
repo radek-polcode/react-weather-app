@@ -5,7 +5,6 @@ import SingleDayBlock from './SingleDayBlock';
 
 export default class extends Component {
   state = {
-    weeklyForecast: this.props.weeklyForecast,
     activeId: 0
   }
   
@@ -13,15 +12,18 @@ export default class extends Component {
     weeklyForecast: PropTypes.object.isRequired,
   }
 
-  onDaySelect(index) {
+  onDaySelect(index, selectedDay) {
     this.setState({
       activeId: index
-    })
+    });
+
+    this.props.setCurrentDay(selectedDay);
   }
 
   render() {
-    const { weeklyForecast, activeId } = this.state;
-    var onDaySelect = this.onDaySelect.bind(this)
+    const activeId = this.state.activeId;
+    const weeklyForecast =  this.props.weeklyForecast
+    const onDaySelect = this.onDaySelect.bind(this)
     const SingleDaysBlock = Object.keys(weeklyForecast).map(function(key, index) {
       return <SingleDayBlock 
                 key={index}
