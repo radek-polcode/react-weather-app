@@ -7,7 +7,7 @@ import './DetailedInfo.css';
 
 function DetailedInfo({ currentDayWeather }) {
   const dayDescription = currentDayWeather['description']
-  const currentTemperature = currentDayWeather['temperature']['max']
+  const currentTemperature = currentDayWeather['temperature']['hourly'][0]
   const conditions = currentDayWeather['conditions'] 
   return (
     <Row className="detailedInfo">
