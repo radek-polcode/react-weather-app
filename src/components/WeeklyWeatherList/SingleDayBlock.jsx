@@ -6,12 +6,6 @@ import { capitalizeText } from '../../utils/capitalizeText';
 import { createImageUrl } from '../../utils/createImageUrl';
 
 export default class SingleDayBlock extends Component {
-  state = {
-    clicked: false,
-    dayilyWeatherInfo: this.props.dayilyWeatherInfo,
-    dayName: this.props.dayName
-  }
-
   // Declare propTypes as static properties as early as possible
   static propTypes = {
     dayilyWeatherInfo: PropTypes.object.isRequired,
@@ -31,21 +25,22 @@ export default class SingleDayBlock extends Component {
   }
 
   render() {
-    const weatherDescription = this.state.dayilyWeatherInfo['description']
     const blockClass = 'singleDayBlock'
+    const dayName = this.props.dayName
     const isActive = this.props.isActive
+    const weatherDescription = this.props.dayilyWeatherInfo['description']
     return (
       <div className={isActive ? blockClass + ' active' : blockClass}
             onClick={this.handleOnClick.bind(this)}>
         <div className="singleDayBlock__dayName">
-          <span>
-            {capitalizeText(this.state.dayName.substr(0, 3))}
+          <span className="">
+            {capitalizeText(dayName.substr(0, 3))}
           </span>
         </div>
         <img src={createImageUrl(48, weatherDescription)} 
-            className="sigleDayBlock__image"/>
-        <span className="sigleDayBlock__temp sigleDayBlock--dayTemp">15&deg;</span>
-        <span className="sigleDayBlock__temp sigleDayBlock--nightTemp">8&deg;</span>
+            className="singleDayBlock__image"/>
+        <span className="singleDayBlock__temp singleDayBlock--dayTemp">15&deg;</span>
+        <span className="singleDayBlock__temp singleDayBlock--nightTemp">8&deg;</span>
       </div>
     )
   }

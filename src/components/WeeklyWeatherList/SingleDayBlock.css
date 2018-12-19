@@ -16,25 +16,27 @@
 }
 
 .singleDayBlock__dayName {
+  color: #bababa !important;
+  font-size: 13px;
   line-height: 15px;
   padding-top: 7px;
 }
 
-.sigleDayBlock__image {
+.singleDayBlock__image {
   display: inline-block;
 }
 
-.sigleDayBlock__temp {
+.singleDayBlock__temp {
   font-weight: normal;
   line-height: 15px;
   font-size: 13px;
 }
 
-.sigleDayBlock--dayTemp {
+.singleDayBlock--dayTemp {
   color: #878787 !important;
   padding-right: 5px;
 }
 
-.sigleDayBlock--nightTemp {
+.singleDayBlock--nightTemp {
   color: #bababa !important;
 }
