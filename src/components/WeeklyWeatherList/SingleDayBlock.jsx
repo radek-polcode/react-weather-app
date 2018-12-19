@@ -29,6 +29,8 @@ export default class SingleDayBlock extends Component {
     const dayName = this.props.dayName
     const isActive = this.props.isActive
     const weatherDescription = this.props.dayilyWeatherInfo['description']
+    const temperatures = this.props.dayilyWeatherInfo['temperature']['hourly']
+    console.log(temperatures)
     return (
       <div className={isActive ? blockClass + ' active' : blockClass}
             onClick={this.handleOnClick.bind(this)}>
@@ -39,8 +41,8 @@ export default class SingleDayBlock extends Component {
         </div>
         <img src={createImageUrl(48, weatherDescription)} 
             className="singleDayBlock__image"/>
-        <span className="singleDayBlock__temp singleDayBlock--dayTemp">15&deg;</span>
-        <span className="singleDayBlock__temp singleDayBlock--nightTemp">8&deg;</span>
+        <span className="singleDayBlock__temp singleDayBlock--dayTemp">{Math.max(...temperatures)}&deg;</span>
+        <span className="singleDayBlock__temp singleDayBlock--nightTemp">{Math.min(...temperatures)}&deg;</span>
       </div>
     )
   }
