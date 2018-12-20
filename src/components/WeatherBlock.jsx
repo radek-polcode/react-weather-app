@@ -29,7 +29,6 @@ export default class WeatherBlock extends Component {
     const weatherData = this.state.weatherData['data']
     const weeklyForecast = this.state.weatherData['data']['city']['weekly_forecast']
     let currentDay = this.state.currentDay
-    console.log(currentDay)
 
     return(
       <div className="weather-block">

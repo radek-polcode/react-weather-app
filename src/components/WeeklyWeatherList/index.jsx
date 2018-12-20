@@ -37,7 +37,6 @@ export default class extends Component {
     return (
       <Row>
         <Col>
-          <h4>Weekly list</h4>
           {SingleDaysBlock}
         </Col>
       </Row>
