@@ -7,7 +7,8 @@ import DailyWeatherBlock from './DailyWeatherBlock';
 import WeeklyWeatherList from './WeeklyWeatherList';
 
 export default class WeatherBlock extends Component {
-  state = { 
+  state = {
+    apiData: [],
     weatherData: jsonData,
     currentDay: jsonData['data']['city']['current_day']
   }
@@ -15,14 +16,25 @@ export default class WeatherBlock extends Component {
   static propTypes = {}
   static defaultProps = {}
 
+  componentDidMount() {
+    fetch('www.api.com')
+    .then(results => {
+      return results.json();
+    }).then(data => {
+      let apiData = data.results.map((dat) => {
+        return (
+          dat
+        )
+      })
+      this.setState({apiData: apiData})
+      console.log(apiData)
+    })
+  }
+
   setCurrentDay = (selectedDay) => {
     this.setState({
       currentDay: selectedDay
     })
-  }
-
-  constructor(props) {
-    super();
   }
 
   render() {
