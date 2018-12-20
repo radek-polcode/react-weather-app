@@ -8,25 +8,31 @@ import DailyChart from './DailyChart';
 export default class extends Component {
   static propTypes = {
     weatherData: PropTypes.object.isRequired,
-    currentDay: PropTypes.string.isRequired
+    currentDay: PropTypes.string.isRequired,
+    //api
+    overallCityInfo: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
     weatherData: {},
-    currentDay: ''
+    currentDay: '',
+    //api props
+    overallCityInfo: {}
   }
 
   render() {
     let weatherData = this.props.weatherData
     const cityInfo = weatherData['city']['city_info']
-    
     let currentDay = this.props.currentDay
-    
     let currentDayWeather = weatherData['city']['weekly_forecast'][currentDay]
+
+    //api
+    const overallCityInfo = this.props.overallCityInfo
+
     return(
       <div>
         <OverallInfo 
-          cityInfo={cityInfo}
+          cityInfo={overallCityInfo}
           currentDay={currentDay}
           currentDayWeather={currentDayWeather}
         />

@@ -17,10 +17,9 @@ function OverallInfo({ cityInfo, currentDay, currentDayWeather }) {
     currentDay: PropTypes.string.isRequired,
     currentDayWeather: PropTypes.object.isRequired,
   }
-
-  const description = currentDayWeather['description'];
   const cityName = cityInfo['name'];
   const country = cityInfo['country'];
+  const description = currentDayWeather['description'];
   return (
     <Row>
       <Col>
