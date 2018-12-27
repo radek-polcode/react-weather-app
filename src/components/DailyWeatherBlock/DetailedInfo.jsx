@@ -5,10 +5,15 @@ import { Button, ButtonGroup, Col, Row } from 'reactstrap';
 import { createImageUrl } from '../../utils/createImageUrl';
 import './DetailedInfo.css';
 
-function DetailedInfo({ currentDayWeather }) {
+function DetailedInfo({ currentDayWeather, currentDateTimeWeather }) {
   const dayDescription = currentDayWeather['description']
-  const currentTemperature = currentDayWeather['temperature']['hourly'][0]
-  const conditions = currentDayWeather['conditions'] 
+
+  //api
+  const temperature = currentDateTimeWeather['temperature']
+  const wind = currentDateTimeWeather['wind']
+  const humidity = currentDateTimeWeather['humidity']
+  const pressure = currentDateTimeWeather['pressure']
+
   return (
     <Row className="detailedInfo">
       <Col xs="6">
@@ -18,15 +23,15 @@ function DetailedInfo({ currentDayWeather }) {
         >
         </img>
         <div className="detailedInfo__temperatureBlock">
-          <span className="detailedInfo__currentTemperature">{currentTemperature}</span>
+          <span className="detailedInfo__currentTemperature">{temperature}</span>
           <span className="detailedInfo__units">&deg;C | &deg;F</span>
         </div>
       </Col>
       <Col xs="6">
         <div className="detailedInfo__details">    
-          <p>Precipitation: {conditions.precipitation} </p>
-          <p>Humidity: {conditions.humidity}</p>
-          <p>Wind: {conditions.wind}</p>
+          <p>Pressure: {pressure} hPa</p>
+          <p>Humidity: {humidity} %</p>
+          <p>Wind: {wind} mps</p>
           <ButtonGroup>
             <Button size="sm">Temperature</Button>
             <Button size="sm">Precipitation</Button>

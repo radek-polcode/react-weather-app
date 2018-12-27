@@ -11,23 +11,29 @@ export default class extends Component {
     currentDay: PropTypes.string.isRequired,
     //api
     overallCityInfo: PropTypes.object.isRequired,
+    currentDateTimeWeather: PropTypes.object.isRequired
   }
 
   static defaultProps = {
     weatherData: {},
     currentDay: '',
     //api props
-    overallCityInfo: {}
+    overallCityInfo: {},
+    currentDateTimeWeather: {}
   }
 
   render() {
     let weatherData = this.props.weatherData
-    const cityInfo = weatherData['city']['city_info']
     let currentDay = this.props.currentDay
     let currentDayWeather = weatherData['city']['weekly_forecast'][currentDay]
 
     //api
     const overallCityInfo = this.props.overallCityInfo
+    const currentDateTimeWeather = this.props.currentDateTimeWeather
+    const description = { 
+      weatherMain: currentDateTimeWeather['weatherMain'],
+      weatherDescription: currentDateTimeWeather['weatherDescription']
+    }
 
     return(
       <div>
@@ -35,8 +41,12 @@ export default class extends Component {
           cityInfo={overallCityInfo}
           currentDay={currentDay}
           currentDayWeather={currentDayWeather}
+          description={description}
         />
-        <DetailedInfo currentDayWeather={currentDayWeather} />
+        <DetailedInfo 
+          currentDayWeather={currentDayWeather}
+          currentDateTimeWeather={currentDateTimeWeather}
+        />
         <DailyChart currentDayWeather={currentDayWeather} />
       </div>
     )
