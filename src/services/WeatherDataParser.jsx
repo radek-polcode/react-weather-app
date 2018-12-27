@@ -32,6 +32,29 @@ const WeatherDataParser = {
     })
 
     return filteredForecast
+  },
+
+  getFiveDaysForecast: function(fiveDayForecastArray) {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    let forecast = {}
+    let previousDay = ''
+
+    fiveDayForecastArray.forEach(dailyForecast => {
+      let currentDateTime = new Date(dailyForecast.dt * 1000)
+      let currentDate = currentDateTime.getDate()
+      let currentDay = currentDateTime.getDay()
+      let currentDayName = days[currentDay]
+
+      if (currentDate !== previousDay) {
+        forecast[currentDayName] = {'hourlyForecast': [dailyForecast]}
+        forecast[currentDayName]['day'] = days[currentDay]
+      } else {
+        forecast[currentDayName]['hourlyForecast'].push(dailyForecast)
+      }
+      previousDay = currentDate
+    })
+    return forecast;
   }
 }
 

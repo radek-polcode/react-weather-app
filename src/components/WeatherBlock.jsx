@@ -14,6 +14,7 @@ export default class WeatherBlock extends Component {
     currentDateTime: new Date().getTime(),
     overallCityInfo: {},
     currentDateTimeWeather: {},
+    fiveDaysForecast: {},
     //nonapi
     weatherData: jsonData,
     currentDay: jsonData['data']['city']['current_day']
@@ -39,10 +40,15 @@ export default class WeatherBlock extends Component {
                                                       apiWeatherData,
                                                       currentDateTime
                                                     )
+        let fiveDaysForecast = WeatherDataParser.getFiveDaysForecast(
+                                                  apiWeatherData.list
+                                                )
+        
         this.setState(
           { 
             overallCityInfo: overallCityInfo,
-            currentDateTimeWeather: currentDateTimeWeather
+            currentDateTimeWeather: currentDateTimeWeather,
+            fiveDaysForecast: fiveDaysForecast
           }
         )
       })
@@ -76,6 +82,8 @@ export default class WeatherBlock extends Component {
           weeklyForecast={weeklyForecast}
           currentDay={currentDay}
           setCurrentDay={this.setCurrentDay}
+          //api
+          fiveDaysForecast={this.state.fiveDaysForecast}
         />
       </div>
     )

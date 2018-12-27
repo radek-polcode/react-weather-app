@@ -10,6 +10,7 @@ export default class extends Component {
   
   static propTypes = {
     weeklyForecast: PropTypes.object.isRequired,
+    fiveDaysForecast: PropTypes.object.isRequired
   }
 
   onDaySelect(index, selectedDay) {
@@ -24,7 +25,11 @@ export default class extends Component {
     const activeId = this.state.activeId;
     const weeklyForecast =  this.props.weeklyForecast
     const onDaySelect = this.onDaySelect.bind(this)
-    const SingleDaysBlock = Object.keys(weeklyForecast).map(function(key, index) {
+
+    //api
+    const fiveDaysForecast = this.props.fiveDaysForecast
+
+    const SingleDaysBlock = Object.keys(fiveDaysForecast).map(function(key, index) {
       return <SingleDayBlock 
                 key={index}
                 blockIndex={index}
