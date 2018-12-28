@@ -10,7 +10,6 @@ import WeatherDataParser from '../../services/WeatherDataParser';
 export default class extends Component {
   static propTypes = {
     currentDay: PropTypes.string.isRequired,
-    //api
     overallCityInfo: PropTypes.object.isRequired,
     currentDateTimeWeather: PropTypes.object.isRequired,
     selectedDayForecast: PropTypes.object.isRequired
@@ -18,7 +17,6 @@ export default class extends Component {
 
   static defaultProps = {
     currentDay: '',
-    //api props
     overallCityInfo: {},
     currentDateTimeWeather: {},
     selectedDayForecast: {}
@@ -26,16 +24,18 @@ export default class extends Component {
 
   render() {
     let currentDay = this.props.currentDay
-
-    //api
-    let currentDateTimeWeather = this.props.currentDateTimeWeather
+    let currentDateTimeWeather = 
+      WeatherDataParser.getCurrentTimeDailyWeather(
+                          this.props.selectedDayForecast.hourlyForecast
+                        )
     let description = { 
       weatherMain: currentDateTimeWeather['weatherMain'],
       weatherDescription: currentDateTimeWeather['weatherDescription']
     }
     let overallCityInfo = this.props.overallCityInfo
-    let selectedDateWeather = WeatherDataParser.prepareDataForChart(this.props.selectedDayForecast.hourlyForecast)
-
+    let selectedDateChartData = WeatherDataParser.prepareDataForChart(
+                                                  this.props.selectedDayForecast.hourlyForecast
+                                                )
     return(
       <div>
         <OverallInfo 
@@ -48,7 +48,7 @@ export default class extends Component {
         />
         <DailyChart 
           currentDateTimeWeather={currentDateTimeWeather}
-          selectedDateWeather={selectedDateWeather}
+          selectedDateWeather={selectedDateChartData}
         />
       </div>
     )

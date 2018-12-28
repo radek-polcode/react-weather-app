@@ -6,33 +6,18 @@ const WeatherDataParser = {
     }
   },
 
-  getCurrentTimeDailyWeather: function(jsonData, currentTime) {
-    let currentDayWeather = this.getHourlyWeatherForCurrentDay(jsonData, currentTime)
-
+  getCurrentTimeDailyWeather: function(hourlyArrays) {
     let weather = {
-      "imgCode": currentDayWeather[0]['weather'][0]['icon'],
-      "humidity": currentDayWeather[0]['main']['humidity'],
-      "pressure": currentDayWeather[0]['main']['pressure'],
-      "temperature": Math.round(currentDayWeather[0]['main']['temp']),
-      "wind": currentDayWeather[0]['wind']['speed'],
-      "weatherMain": currentDayWeather[0]['weather'][0]['main'],
-      "weatherDescription": currentDayWeather[0]['weather'][0]['description'],
+      "imgCode": hourlyArrays[0]['weather'][0]['icon'],
+      "humidity": hourlyArrays[0]['main']['humidity'],
+      "pressure": hourlyArrays[0]['main']['pressure'],
+      "temperature": Math.round(hourlyArrays[0]['main']['temp']),
+      "wind": hourlyArrays[0]['wind']['speed'],
+      "weatherMain": hourlyArrays[0]['weather'][0]['main'],
+      "weatherDescription": hourlyArrays[0]['weather'][0]['description'],
     }
 
     return weather;
-  },
-
-  getHourlyWeatherForCurrentDay: function(jsonData, currentTime) {
-    let today = new Date(currentTime).getDate()
-    let hourlyWeather = jsonData.list
-    const filteredForecast = hourlyWeather.filter(el => {
-      let forecastDateTime = new Date(el.dt * 1000).getDate()
-      if (today === forecastDateTime) {
-        return el
-      }
-    })
-
-    return filteredForecast
   },
 
   getFiveDaysForecast: function(fiveDayForecastArray) {
