@@ -46,7 +46,8 @@ export default class SingleDayBlock extends Component {
           </span>
         </div>
         <img src={createImageUrl(imgCode)} 
-            className="singleDayBlock__image"/>
+            className="singleDayBlock__image"
+            alt="weather type icon"/>
         <span className="singleDayBlock__temp singleDayBlock--dayTemp">
           {temperatures.max}&deg;
         </span>

@@ -1,23 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AreaChart, Area, XAxis, Tooltip } from 'recharts';
+import { AreaChart, Area, XAxis } from 'recharts';
 
 DailyChart.propTypes = {
-  currentDayWeather: PropTypes.object.isRequired,
   currentDateTimeWeather: PropTypes.object.isRequired
 }
 
-function DailyChart({ currentDayWeather, selectedDateWeather }) {
-  let chartObjects = []
-  const hours2 = ["12AM", "3AM", "6AM", "9AM", "12PM", "3PM", "6PM", "9PM"]
-  const temps = currentDayWeather['temperature']['hourly']
-  hours2.forEach(function(key, index) {
-    chartObjects.push({
-      'hour': key,
-      'temp_val': temps[index]
-    })
-  })
-
+function DailyChart({ selectedDateWeather }) {
   return (
     <div>
       <AreaChart 

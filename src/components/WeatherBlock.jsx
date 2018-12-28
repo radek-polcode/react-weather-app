@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import axios from 'axios';
 
 import './WeatherBlock.css';
-import jsonData from '../containers/data.js';
 import DailyWeatherBlock from './DailyWeatherBlock';
 import WeatherDataParser from '../services/WeatherDataParser';
 import WeeklyWeatherList from './WeeklyWeatherList';
@@ -15,10 +13,6 @@ export default class WeatherBlock extends Component {
     overallCityInfo: {},
     currentDateTimeWeather: {},
     fiveDaysForecast: {},
-    //nonapi
-    weatherData: jsonData,
-    currentDay: jsonData['data']['city']['current_day'],
-    currentDayApi: ''
   }
 
   static propTypes = {}
@@ -28,7 +22,6 @@ export default class WeatherBlock extends Component {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const forecast5 = 'http://api.openweathermap.org/data/2.5/forecast?id='
     const barcelonaId = '6356055'
-    const barcelonaId2 = '3128760'
     const units = '&units=metric'
     const apiKey = 'a23d2967a22cfa9a510a2c630aa76206'
     
@@ -67,8 +60,6 @@ export default class WeatherBlock extends Component {
   }
 
   render() {
-    const weatherData = this.state.weatherData['data']
-    const weeklyForecast = this.state.weatherData['data']['city']['weekly_forecast']
     let currentDay = this.state.currentDay
     let currentDayApi = this.state.currentDayApi
     //api data
@@ -78,14 +69,12 @@ export default class WeatherBlock extends Component {
     return(
       <div className="weather-block">
         <DailyWeatherBlock 
-          weatherData={weatherData}
           currentDay={currentDay}
           overallCityInfo={overallCityInfo}
           currentDateTimeWeather={currentDateTimeWeather}
           selectedDayForecast={fiveDaysForecast[currentDayApi]}
         />
         <WeeklyWeatherList 
-          weeklyForecast={weeklyForecast}
           currentDay={currentDay}
           setCurrentDay={this.setCurrentDay}
           //api

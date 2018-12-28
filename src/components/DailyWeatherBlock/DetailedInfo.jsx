@@ -5,6 +5,10 @@ import { Button, ButtonGroup, Col, Row } from 'reactstrap';
 import { createImageUrl } from '../../utils/createImageUrl';
 import './DetailedInfo.css';
 
+DetailedInfo.propTypes = {
+  currentDateTimeWeather: PropTypes.object.isRequired
+}
+
 function DetailedInfo({ currentDateTimeWeather }) {
   //api
   const humidity = currentDateTimeWeather['humidity']

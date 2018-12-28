@@ -9,7 +9,6 @@ export default class extends Component {
   }
   
   static propTypes = {
-    weeklyForecast: PropTypes.object.isRequired,
     fiveDaysForecast: PropTypes.object.isRequired
   }
 
@@ -23,7 +22,6 @@ export default class extends Component {
 
   render() {
     const activeId = this.state.activeId;
-    const weeklyForecast =  this.props.weeklyForecast
     const onDaySelect = this.onDaySelect.bind(this)
 
     //api
