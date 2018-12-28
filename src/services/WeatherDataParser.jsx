@@ -67,8 +67,7 @@ const WeatherDataParser = {
       'min': Math.min(...dailyTemperatures),
       'max': Math.max(...dailyTemperatures),
     }
-    console.log(dailyTemperatures)
-    console.log(temperatures)
+    
     return temperatures
   }
 }

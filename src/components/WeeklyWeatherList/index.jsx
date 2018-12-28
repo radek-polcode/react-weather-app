@@ -28,7 +28,6 @@ export default class extends Component {
 
     //api
     const fiveDaysForecast = this.props.fiveDaysForecast
-    console.log(fiveDaysForecast)
     const SingleDaysBlock = Object.keys(fiveDaysForecast).map(function(key, index) {
       return <SingleDayBlock 
                 blockIndex={index}
