@@ -10,6 +10,7 @@ const WeatherDataParser = {
     let currentDayWeather = this.getHourlyWeatherForCurrentDay(jsonData, currentTime)
 
     let weather = {
+      "imgCode": currentDayWeather[0]['weather'][0]['icon'],
       "humidity": currentDayWeather[0]['main']['humidity'],
       "pressure": currentDayWeather[0]['main']['pressure'],
       "temperature": Math.round(currentDayWeather[0]['main']['temp']),
@@ -55,6 +56,20 @@ const WeatherDataParser = {
       previousDay = currentDate
     })
     return forecast;
+  },
+
+  getTemperaturesForPassedDay: function(hourlyArrays) {
+    let dailyTemperatures = hourlyArrays.map(el => {
+      return Math.round(el.main.temp)
+    })
+
+    let temperatures = {
+      'min': Math.min(...dailyTemperatures),
+      'max': Math.max(...dailyTemperatures),
+    }
+    console.log(dailyTemperatures)
+    console.log(temperatures)
+    return temperatures
   }
 }
 

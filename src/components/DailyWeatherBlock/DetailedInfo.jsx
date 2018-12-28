@@ -5,20 +5,19 @@ import { Button, ButtonGroup, Col, Row } from 'reactstrap';
 import { createImageUrl } from '../../utils/createImageUrl';
 import './DetailedInfo.css';
 
-function DetailedInfo({ currentDayWeather, currentDateTimeWeather }) {
-  const dayDescription = currentDayWeather['description']
-
+function DetailedInfo({ currentDateTimeWeather }) {
   //api
+  const humidity = currentDateTimeWeather['humidity']
+  const imgCode = currentDateTimeWeather['imgCode']
+  const pressure = currentDateTimeWeather['pressure']
   const temperature = currentDateTimeWeather['temperature']
   const wind = currentDateTimeWeather['wind']
-  const humidity = currentDateTimeWeather['humidity']
-  const pressure = currentDateTimeWeather['pressure']
 
   return (
     <Row className="detailedInfo">
       <Col xs="6">
         <img className="detailedInfo__image" 
-             src={createImageUrl('64', dayDescription)}
+             src={createImageUrl(imgCode)}
              alt="weather-thumbnail"
         >
         </img>
