@@ -58,17 +58,29 @@ const WeatherDataParser = {
     return forecast;
   },
 
-  getTemperaturesForPassedDay: function(hourlyArrays) {
+  getMinAndMaxTemperatureForPassedDay: function(hourlyArrays) {
     let dailyTemperatures = hourlyArrays.map(el => {
       return Math.round(el.main.temp)
     })
 
-    let temperatures = {
+    let minAndMaxtemperature = {
       'min': Math.min(...dailyTemperatures),
       'max': Math.max(...dailyTemperatures),
     }
     
-    return temperatures
+    return minAndMaxtemperature
+  },
+
+  prepareDataForChart: function(hourlyArrays = []) {
+    let hourlyTemperatures = [] 
+    hourlyArrays.forEach(el => {
+      let hour = new Date(el.dt * 1000).getHours()
+      hourlyTemperatures.push({
+        'hour': hour,
+        'temp': Math.round(el.main.temp)
+      })
+    })
+    return hourlyTemperatures
   }
 }
 

@@ -5,13 +5,16 @@ import './index.css';
 import OverallInfo from './OverallInfo';
 import DetailedInfo from './DetailedInfo';
 import DailyChart from './DailyChart';
+import WeatherDataParser from '../../services/WeatherDataParser';
+
 export default class extends Component {
   static propTypes = {
     weatherData: PropTypes.object.isRequired,
     currentDay: PropTypes.string.isRequired,
     //api
     overallCityInfo: PropTypes.object.isRequired,
-    currentDateTimeWeather: PropTypes.object.isRequired
+    currentDateTimeWeather: PropTypes.object.isRequired,
+    selectedDayForecast: PropTypes.object.isRequired
   }
 
   static defaultProps = {
@@ -19,7 +22,8 @@ export default class extends Component {
     currentDay: '',
     //api props
     overallCityInfo: {},
-    currentDateTimeWeather: {}
+    currentDateTimeWeather: {},
+    selectedDayForecast: {}
   }
 
   render() {
@@ -28,12 +32,13 @@ export default class extends Component {
     let currentDayWeather = weatherData['city']['weekly_forecast'][currentDay]
 
     //api
-    const overallCityInfo = this.props.overallCityInfo
-    const currentDateTimeWeather = this.props.currentDateTimeWeather
-    const description = { 
+    let currentDateTimeWeather = this.props.currentDateTimeWeather
+    let description = { 
       weatherMain: currentDateTimeWeather['weatherMain'],
       weatherDescription: currentDateTimeWeather['weatherDescription']
     }
+    let overallCityInfo = this.props.overallCityInfo
+    let selectedDateWeather = WeatherDataParser.prepareDataForChart(this.props.selectedDayForecast.hourlyForecast)
 
     return(
       <div>
@@ -47,7 +52,11 @@ export default class extends Component {
           currentDayWeather={currentDayWeather}
           currentDateTimeWeather={currentDateTimeWeather}
         />
-        <DailyChart currentDayWeather={currentDayWeather} />
+        <DailyChart 
+          currentDayWeather={currentDayWeather} 
+          currentDateTimeWeather={currentDateTimeWeather}
+          selectedDateWeather={selectedDateWeather}
+        />
       </div>
     )
   }

@@ -35,7 +35,7 @@ export default class SingleDayBlock extends Component {
     //api
     const dailyWeatherInfo = this.props.dailyWeatherInfo
     const imgCode = dailyWeatherInfo.hourlyForecast[0].weather[0].icon
-    const temperatures = WeatherDataParser.getTemperaturesForPassedDay(dailyWeatherInfo.hourlyForecast)
+    const temperatures = WeatherDataParser.getMinAndMaxTemperatureForPassedDay(dailyWeatherInfo.hourlyForecast)
 
     return (
       <div className={isActive ? blockClass + ' active' : blockClass}
