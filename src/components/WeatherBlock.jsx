@@ -43,6 +43,7 @@ export default class WeatherBlock extends Component {
                                                 )
         this.setState(
           { 
+            apiWeatherData: apiWeatherData,
             overallCityInfo: overallCityInfo,
             currentDateTimeWeather: currentDateTimeWeather,
             fiveDaysForecast: fiveDaysForecast,
