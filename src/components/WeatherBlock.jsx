@@ -25,7 +25,7 @@ export default class WeatherBlock extends Component {
     const units = '&units=metric'
     const apiKey = 'a23d2967a22cfa9a510a2c630aa76206'
     
-    let currentDayApi = new Date(this.state.currentDateTime).getDay()
+    let currentDay = new Date(this.state.currentDateTime).getDay()
     
     axios
       .get(forecast5 + barcelonaId + "&APPID=" + apiKey + units)
@@ -46,7 +46,7 @@ export default class WeatherBlock extends Component {
             overallCityInfo: overallCityInfo,
             currentDateTimeWeather: currentDateTimeWeather,
             fiveDaysForecast: fiveDaysForecast,
-            currentDayApi: days[currentDayApi]
+            currentDay: days[currentDay]
           }
         )
       })
@@ -61,7 +61,6 @@ export default class WeatherBlock extends Component {
 
   render() {
     let currentDay = this.state.currentDay
-    let currentDayApi = this.state.currentDayApi
     //api data
     const fiveDaysForecast = this.state.fiveDaysForecast
     const overallCityInfo = this.state.overallCityInfo
@@ -72,7 +71,7 @@ export default class WeatherBlock extends Component {
           currentDay={currentDay}
           overallCityInfo={overallCityInfo}
           currentDateTimeWeather={currentDateTimeWeather}
-          selectedDayForecast={fiveDaysForecast[currentDayApi]}
+          selectedDayForecast={fiveDaysForecast[currentDay]}
         />
         <WeeklyWeatherList 
           currentDay={currentDay}
