@@ -5,9 +5,11 @@ import './WeatherBlock.css';
 import DailyWeatherBlock from './DailyWeatherBlock';
 import WeatherDataParser from '../services/WeatherDataParser';
 import WeeklyWeatherList from './WeeklyWeatherList';
+import CityListJson from '../containers/city.list.min.json'
 
 export default class WeatherBlock extends Component {
   state = {
+    city: 'Barcelona',
     currentDateTime: new Date().getTime(),
     overallCityInfo: {},
     currentDateTimeWeather: {},
@@ -23,7 +25,7 @@ export default class WeatherBlock extends Component {
     const barcelonaId = '6356055'
     const units = '&units=metric'
     const apiKey = 'a23d2967a22cfa9a510a2c630aa76206'
-    
+    console.log(CityListJson.find(city => city.name === 'Barcelona'))
     let currentDay = new Date(this.state.currentDateTime).getDay()
     let dayName = days[currentDay]
     axios
