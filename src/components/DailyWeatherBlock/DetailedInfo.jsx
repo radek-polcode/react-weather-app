@@ -8,12 +8,19 @@ import './DetailedInfo.css';
 export default class DetailedInfo extends Component {
   state = {
   }
-  
+
   static propTypes = {
-    currentDateTimeWeather: PropTypes.object.isRequired
+    currentDateTimeWeather: PropTypes.object.isRequired,
+    onButtonClick: PropTypes.func.isRequired
   }
   static defaultProps = {
     currentDateTimeWeather: {}
+  }
+
+  handleOnClick(buttonName) {
+    console.log(buttonName)
+    const onButtonClick = this.props.onButtonClick
+    onButtonClick(buttonName)
   }
 
   render() {
@@ -43,11 +50,21 @@ export default class DetailedInfo extends Component {
             <p>Humidity: {humidity} %</p>
             <p>Wind: {wind} mps</p>
             <ButtonGroup>
-              <Button size="sm">
+              <Button size="sm"
+                      name="temperatureButton"
+                      onClick={this.handleOnClick.bind(this, 'temperatureButton')}>
                 Temperature
               </Button>
-              <Button size="sm">Precipitation</Button>
-              <Button size="sm">Wind</Button>
+              <Button size="sm"
+                      name="precipitationButton"
+                      onClick={this.handleOnClick.bind(this, 'precipitationButton')}>
+                Precipitation
+              </Button>
+              <Button size="sm"
+                      name="windButton"
+                      onClick={this.handleOnClick.bind(this, 'windButton')}>
+                Wind
+              </Button>
             </ButtonGroup>
           </div>
         </Col>

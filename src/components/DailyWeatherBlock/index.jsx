@@ -8,6 +8,10 @@ import DailyChart from './DailyChart';
 import WeatherDataParser from '../../services/WeatherDataParser';
 
 export default class extends Component {
+  state = {
+    activeButtonChart: 'temperatureButton'
+  }
+
   static propTypes = {
     currentDay: PropTypes.string.isRequired,
     overallCityInfo: PropTypes.object.isRequired,
@@ -20,6 +24,12 @@ export default class extends Component {
     overallCityInfo: {},
     currentDateTimeWeather: {},
     selectedDayForecast: {}
+  }
+
+  setActiveButtonChart(buttonName) {
+    this.setState({
+      activeButtonChart: buttonName,
+    })
   }
 
   render() {
@@ -45,6 +55,7 @@ export default class extends Component {
         />
         <DetailedInfo 
           currentDateTimeWeather={currentDateTimeWeather}
+          onButtonClick={this.setActiveButtonChart}
         />
         <DailyChart 
           currentDateTimeWeather={currentDateTimeWeather}
