@@ -7,6 +7,10 @@ const WeatherDataParser = {
   },
 
   getCurrentTimeDailyWeather: function(hourlyArrays) {
+    if (hourlyArrays === undefined) {
+      return {}
+    }
+    
     let weather = {
       "imgCode": hourlyArrays[0]['weather'][0]['icon'],
       "humidity": hourlyArrays[0]['main']['humidity'],
