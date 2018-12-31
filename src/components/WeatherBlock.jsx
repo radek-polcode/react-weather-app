@@ -19,7 +19,7 @@ export default class WeatherBlock extends Component {
   
   componentDidMount() {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const forecast5 = 'http://api.openweathermap.org/data/2.5/forecast?id='
+    const forecast5 = 'https://api.openweathermap.org/data/2.5/forecast?id='
     const barcelonaId = '6356055'
     const units = '&units=metric'
     const apiKey = 'a23d2967a22cfa9a510a2c630aa76206'

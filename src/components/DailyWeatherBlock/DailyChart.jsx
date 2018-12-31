@@ -8,16 +8,28 @@ DailyChart.propTypes = {
 }
 
 function DailyChart({ selectedDateWeather, activeButtonChart }) {
-  const setChartFillColor = ({activeButtonChart}) => {
+  const setChartFillColor = () => {
     switch (activeButtonChart) {
       case 'temperatureButton':
-        return 'rgba(255, 204, 0, 0.2)'
+        return {
+          'fill': 'rgba(255, 204, 0, 0.2)',
+          'stroke': '#ffcc00'
+        }
       case 'pressureButton':
-        return 'rgba(255, 204, 0, 0.2)'
+        return {
+          'fill': 'rgba(0, 97, 255, 0.2)',
+          'stroke': '#0092ff'
+        }
       case 'windButton':
-        return 'rgba(255, 204, 0, 0.2)'
+        return {
+          'fill': 'rgba(138, 141, 146, 0.4)',
+          'stroke': '#65696F'
+        }
       default:
-        return 'rgba(255, 204, 0, 0.2)'
+        return {
+          'fill': 'rgba(255, 204, 0, 0.2)',
+          'stroke': '#ffcc00'
+        }
     }
   }
   
@@ -45,13 +57,13 @@ function DailyChart({ selectedDateWeather, activeButtonChart }) {
           animationDuration={500}
           animationEasing='ease-in'
           dataKey='value' 
-          fill='rgba(255, 204, 0, 0.2)'
+          fill={setChartFillColor().fill}
           label={{ 
             fill: '#bababa',
             fontSize: '12',
             position: 'top'
           }}
-          stroke='#ffcc00' 
+          stroke={setChartFillColor().stroke} 
           strokeWidth='2' 
           type='monotone' 
         />
