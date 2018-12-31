@@ -3,23 +3,37 @@ import PropTypes from 'prop-types'
 import { AreaChart, Area, XAxis } from 'recharts';
 
 DailyChart.propTypes = {
-  currentDateTimeWeather: PropTypes.object.isRequired
+  activeButtonChart: PropTypes.string.isRequired,
+  selectedDateWeather: PropTypes.array.isRequired,
 }
 
-function DailyChart({ selectedDateWeather }) {
+function DailyChart({ selectedDateWeather, activeButtonChart }) {
+  const setChartFillColor = ({activeButtonChart}) => {
+    switch (activeButtonChart) {
+      case 'temperatureButton':
+        return 'rgba(255, 204, 0, 0.2)'
+      case 'pressureButton':
+        return 'rgba(255, 204, 0, 0.2)'
+      case 'windButton':
+        return 'rgba(255, 204, 0, 0.2)'
+      default:
+        return 'rgba(255, 204, 0, 0.2)'
+    }
+  }
+  
   return (
     <div>
       <AreaChart 
         data={selectedDateWeather}
         height={120} 
-        margin={{ top: 15 }}
+        margin={{ top: 25 }}
         width={600} 
       >
         <XAxis
           axisLine={false}
           dataKey="hour"
           interval="preserveStartEnd"
-          padding={{ left: 10, right: 10 }}
+          padding={{ left: 25, right: 25 }}
           minTickGap={0}
           tickLine={false}
           tick={{
@@ -30,7 +44,7 @@ function DailyChart({ selectedDateWeather }) {
         <Area
           animationDuration={500}
           animationEasing='ease-in'
-          dataKey='temp' 
+          dataKey='value' 
           fill='rgba(255, 204, 0, 0.2)'
           label={{ 
             fill: '#bababa',

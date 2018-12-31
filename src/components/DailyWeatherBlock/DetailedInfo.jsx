@@ -6,24 +6,23 @@ import { createImageUrl } from '../../utils/createImageUrl';
 import './DetailedInfo.css';
 
 export default class DetailedInfo extends Component {
-  state = {
-  }
-
   static propTypes = {
+    activeButtonChart: PropTypes.string.isRequired,
     currentDateTimeWeather: PropTypes.object.isRequired,
-    onButtonClick: PropTypes.func.isRequired
+    onButtonClick: PropTypes.func.isRequired,
   }
   static defaultProps = {
+    activeButtonChart: '',
     currentDateTimeWeather: {}
   }
 
   handleOnClick(buttonName) {
-    console.log(buttonName)
     const onButtonClick = this.props.onButtonClick
     onButtonClick(buttonName)
   }
 
   render() {
+    let activeButtonChart = this.props.activeButtonChart
     let currentDateTimeWeather = this.props.currentDateTimeWeather
     let humidity = currentDateTimeWeather['humidity']
     let imgCode = currentDateTimeWeather['imgCode']
@@ -46,22 +45,25 @@ export default class DetailedInfo extends Component {
         </Col>
         <Col xs="6">
           <div className="detailedInfo__details">    
-            <p>Pressure: {pressure} hPa</p>
             <p>Humidity: {humidity} %</p>
+            <p>Pressure: {pressure} hPa</p>
             <p>Wind: {wind} mps</p>
             <ButtonGroup>
-              <Button size="sm"
+              <Button className={activeButtonChart === 'temperatureButton' ? 'active' : '' }
                       name="temperatureButton"
+                      size="sm"
                       onClick={this.handleOnClick.bind(this, 'temperatureButton')}>
                 Temperature
               </Button>
-              <Button size="sm"
-                      name="precipitationButton"
-                      onClick={this.handleOnClick.bind(this, 'precipitationButton')}>
-                Precipitation
+              <Button className={activeButtonChart === 'pressureButton' ? 'active' : '' }
+                      name="pressureButton"
+                      size="sm"
+                      onClick={this.handleOnClick.bind(this, 'pressureButton')}>
+                Pressure
               </Button>
-              <Button size="sm"
+              <Button className={activeButtonChart === 'windButton' ? 'active' : ''}
                       name="windButton"
+                      size="sm"
                       onClick={this.handleOnClick.bind(this, 'windButton')}>
                 Wind
               </Button>

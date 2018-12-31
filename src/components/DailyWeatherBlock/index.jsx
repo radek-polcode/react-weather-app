@@ -33,6 +33,7 @@ export default class extends Component {
   }
 
   render() {
+    let activeButtonChart = this.state.activeButtonChart
     let currentDay = this.props.currentDay
     let currentDateTimeWeather = 
       WeatherDataParser.getCurrentTimeDailyWeather(
@@ -43,9 +44,14 @@ export default class extends Component {
       weatherDescription: currentDateTimeWeather['weatherDescription']
     }
     let overallCityInfo = this.props.overallCityInfo
-    let selectedDateChartData = WeatherDataParser.prepareDataForChart(
-                                                  this.props.selectedDayForecast.hourlyForecast
-                                                )
+    let selectedDateChartData = 
+      WeatherDataParser.prepareDataForChart(
+                          activeButtonChart,
+                          this.props.selectedDayForecast.hourlyForecast
+                        )
+    
+    const setActiveButtonChart = this.setActiveButtonChart.bind(this)
+
     return(
       <div>
         <OverallInfo 
@@ -55,11 +61,12 @@ export default class extends Component {
         />
         <DetailedInfo 
           currentDateTimeWeather={currentDateTimeWeather}
-          onButtonClick={this.setActiveButtonChart}
+          onButtonClick={setActiveButtonChart}
+          activeButtonChart={activeButtonChart}
         />
         <DailyChart 
-          currentDateTimeWeather={currentDateTimeWeather}
           selectedDateWeather={selectedDateChartData}
+          activeButtonChart={activeButtonChart}
         />
       </div>
     )

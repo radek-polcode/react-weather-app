@@ -60,16 +60,41 @@ const WeatherDataParser = {
     return minAndMaxtemperature
   },
 
-  prepareDataForChart: function(hourlyArrays = []) {
-    let hourlyTemperatures = [] 
-    hourlyArrays.forEach(el => {
-      let hour = new Date(el.dt * 1000).getHours()
-      hourlyTemperatures.push({
-        'hour': hour,
-        'temp': Math.round(el.main.temp)
-      })
-    })
-    return hourlyTemperatures
+  prepareDataForChart: function(activeButtonChart, hourlyArrays = []) {
+    switch (activeButtonChart) {
+      case 'temperatureButton': 
+        let hourlyTemperatures = [] 
+        hourlyArrays.forEach(el => {
+          let hour = new Date(el.dt * 1000).getHours()
+          hourlyTemperatures.push({
+            'hour': hour,
+            'value': Math.round(el.main.temp)
+          })
+        })
+        return hourlyTemperatures
+      case 'pressureButton': 
+        let hourlyPressure = [] 
+        hourlyArrays.forEach(el => {
+          let hour = new Date(el.dt * 1000).getHours()
+          hourlyPressure.push({
+            'hour': hour,
+            'value': el.main.pressure
+          })
+        })
+        return hourlyPressure
+      case 'windButton': 
+        let hourlyWind = [] 
+        hourlyArrays.forEach(el => {
+          let hour = new Date(el.dt * 1000).getHours()
+          hourlyWind.push({
+            'hour': hour,
+            'value': el.wind.speed
+          })
+        })
+        return hourlyWind
+      default:
+        return {}
+    }
   }
 }
 
