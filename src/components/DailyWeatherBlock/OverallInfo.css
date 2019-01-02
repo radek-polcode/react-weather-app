@@ -1,3 +1,13 @@
 .city-info {
   font-size: 24px;
+  float: left;
+  margin-right: 20px !important;
+}
+
+.search-input {
+  float: right;
+}
+
+.search-input ~ p {
+  clear: both;
 }

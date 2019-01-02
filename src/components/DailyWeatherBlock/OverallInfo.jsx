@@ -6,18 +6,17 @@ import { capitalizeText } from '../../utils/capitalizeText';
 import './OverallInfo.css';
 
 export default class OverallInfo extends Component {
-
-  state = {
-    inputValue: this.props.cityInfo['name']
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  constructor(props) {
-    super(props)      
-    this.handleKeyPress = this.handleKeyPress.bind(this)
+  state = {
+    searchValue: ''
   }
 
   static defaultProps = {
-    cityInfo: {'name': 'Barcelona'},
+    cityInfo: {},
     currentDay: '',
     descritpion: {}
   }
@@ -28,34 +27,30 @@ export default class OverallInfo extends Component {
     description: PropTypes.object.isRequired
   }
 
-
-  handleKeyPress(e) {
-    if (e.key === 'Enter') {
-      this.setState({
-          inputValue: e.target.value
-        }
-      )
-    }
+  handleChange(e) {
+    console.log(e.target.value)
+    this.setState({
+      searchValue: e.target.value
+    })
   }
 
   render () {
-  console.log(this.props.cityInfo)
-
-    // const cityName = this.props.cityInfo['name'];
-    const country = this.props.cityInfo['country'];
-    const currentDay = this.props.currentDay;
-    const weatherDescription = this.props.description
+    let cityName = this.props.cityInfo.name
+    let country = this.props.cityInfo.country;
+    let currentDay = this.props.currentDay;
+    let weatherDescription = this.props.description
 
     return (
       <Row>
         <Col>
-          <input className="city-info"
+          <h2 className="city-info">{cityName}, {country}</h2>
+          <input className="search-input"
                  name="cityName"
-                 onKeyPress={this.handleKeyPress}
-                 value={this.state.inputValue}
+                 onChange={this.handleChange}
+                 value={this.state.searchValue}
                  type="text"
+                 placeholder="Type city name..."
           />
-          <span>{country}</span>
           <p>{capitalizeText(currentDay)}</p>
           <p>{weatherDescription.weatherMain}, {weatherDescription.weatherDescription}</p>
         </Col>

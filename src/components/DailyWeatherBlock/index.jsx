@@ -51,7 +51,6 @@ export default class extends Component {
                         )
     
     const setActiveButtonChart = this.setActiveButtonChart.bind(this)
-
     return(
       <div>
         <OverallInfo 
