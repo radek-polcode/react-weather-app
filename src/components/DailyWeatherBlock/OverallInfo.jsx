@@ -4,17 +4,9 @@ import { Col, Row } from 'reactstrap';
 
 import { capitalizeText } from '../../utils/capitalizeText';
 import './OverallInfo.css';
+import Search from './Search'
 
 export default class OverallInfo extends Component {
-  constructor(props) {
-    super(props)
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  state = {
-    searchValue: ''
-  }
-
   static defaultProps = {
     cityInfo: {},
     currentDay: '',
@@ -24,17 +16,12 @@ export default class OverallInfo extends Component {
   static propTypes = {
     cityInfo: PropTypes.object.isRequired,
     currentDay: PropTypes.string.isRequired,
-    description: PropTypes.object.isRequired
-  }
-
-  handleChange(e) {
-    console.log(e.target.value)
-    this.setState({
-      searchValue: e.target.value
-    })
+    description: PropTypes.object.isRequired,
+    setCityId: PropTypes.func.isRequired
   }
 
   render () {
+    const setCityId = this.props.setCityId
     let cityName = this.props.cityInfo.name
     let country = this.props.cityInfo.country;
     let currentDay = this.props.currentDay;
@@ -44,13 +31,7 @@ export default class OverallInfo extends Component {
       <Row>
         <Col>
           <h2 className="city-info">{cityName}, {country}</h2>
-          <input className="search-input"
-                 name="cityName"
-                 onChange={this.handleChange}
-                 value={this.state.searchValue}
-                 type="text"
-                 placeholder="Type city name..."
-          />
+          <Search setCityId={setCityId}/>
           <p>{capitalizeText(currentDay)}</p>
           <p>{weatherDescription.weatherMain}, {weatherDescription.weatherDescription}</p>
         </Col>

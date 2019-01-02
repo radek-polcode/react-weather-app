@@ -8,8 +8,13 @@ import WeeklyWeatherList from './WeeklyWeatherList';
 import CityListJson from '../containers/city.list.min.json'
 
 export default class WeatherBlock extends Component {
+  constructor (props) {
+    super(props)
+    this.setCityId.bind(this)
+  }
+
   state = {
-    city: 'Barcelona',
+    cityId: '6356055',
     currentDateTime: new Date().getTime(),
     overallCityInfo: {},
     currentDateTimeWeather: {},
@@ -21,15 +26,17 @@ export default class WeatherBlock extends Component {
   
   componentDidMount() {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const forecast5 = 'https://api.openweathermap.org/data/2.5/forecast?id='
-    const barcelonaId = '6356055'
-    const units = '&units=metric'
+    const forecast5link = 'https://api.openweathermap.org/data/2.5/forecast?id='
     const apiKey = 'a23d2967a22cfa9a510a2c630aa76206'
-    console.log(CityListJson.find(city => city.name === 'Barcelona'))
+    const units = '&units=metric'
+    
+    let cityId = this.state.cityId
     let currentDay = new Date(this.state.currentDateTime).getDay()
     let dayName = days[currentDay]
+    
+    console.log(CityListJson.find(city => city.name === 'Barcelona'))
     axios
-      .get(forecast5 + barcelonaId + "&APPID=" + apiKey + units)
+      .get(forecast5link + cityId + "&APPID=" + apiKey + units)
       .then(response => {
         let apiWeatherData = response.data
         let overallCityInfo = WeatherDataParser.getCityOverallInfo(apiWeatherData)
@@ -57,12 +64,19 @@ export default class WeatherBlock extends Component {
     })
   }
 
+  setCityId = (selectedCityId) => {
+    this.setState({
+      cityId: selectedCityId
+    })
+  }
+
   render() {
     let currentDay = this.state.currentDay
     //api data
     const fiveDaysForecast = this.state.fiveDaysForecast
     const overallCityInfo = this.state.overallCityInfo
     const currentDateTimeWeather = this.state.currentDateTimeWeather
+    console.log(this.state)
     return(
       <div className="weather-block">
         <DailyWeatherBlock 
@@ -70,6 +84,7 @@ export default class WeatherBlock extends Component {
           overallCityInfo={overallCityInfo}
           currentDateTimeWeather={currentDateTimeWeather}
           selectedDayForecast={fiveDaysForecast[currentDay]}
+          setCityId={this.setCityId}
         />
         <WeeklyWeatherList 
           currentDay={currentDay}
