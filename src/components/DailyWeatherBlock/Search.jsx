@@ -7,7 +7,6 @@ import CityListJson from '../../containers/city.list.min.json'
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
 const getSuggestions = value => {
-  console.log(value)
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
 
@@ -23,7 +22,7 @@ const getSuggestions = value => {
 // When suggestion is clicked, Autosuggest needs to populate the input
 // based on the clicked suggestion. Teach Autosuggest how to calculate the
 // input value for every given suggestion.
-const getSuggestionValue = suggestion => suggestion.name;
+const getSuggestionValue = suggestion => suggestion.name + ', ' + suggestion.id;
 
 // Use your imagination to render suggestions.
 const renderSuggestion = suggestion => (
@@ -34,6 +33,7 @@ const renderSuggestion = suggestion => (
 
 export default class Search extends Component {
   state = {
+    cityId: '',
     value: '',
     suggestions: []
   }
@@ -55,14 +55,28 @@ export default class Search extends Component {
   };
 
   onChange = (e, { newValue }) => {
-    console.log(e)
     const setCityId = this.props.setCityId
 
     this.setState({
-      value: newValue
+      value: newValue,
     })
 
-    // setCityId(cityId)
+    if (newValue.match(/[a-zA-Z]+,\s\d+/)){
+      let cityId = newValue.match(/\d+/)[0]
+      this.setState({
+        cityId: cityId
+      })
+      setCityId(cityId)
+    }
+
+  }
+
+  removeCityIdFromString (value) {
+    if (value.match(/[a-zA-Z]+,\s\d+/)) {
+      return value.match(/[a-zA-Z]+/)[0]
+    } else {
+      return value
+    }
   }
 
   render() {
@@ -71,11 +85,9 @@ export default class Search extends Component {
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
       placeholder: 'Type a city',
-      value,
+      value: this.removeCityIdFromString(value),
       onChange: this.onChange,
-      'data-city-id': value
     };
-    console.log(inputProps)
 
     return (
       <>

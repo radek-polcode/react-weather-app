@@ -34,7 +34,6 @@ export default class WeatherBlock extends Component {
     let currentDay = new Date(this.state.currentDateTime).getDay()
     let dayName = days[currentDay]
     
-    console.log(CityListJson.find(city => city.name === 'Barcelona'))
     axios
       .get(forecast5link + cityId + "&APPID=" + apiKey + units)
       .then(response => {
@@ -65,6 +64,7 @@ export default class WeatherBlock extends Component {
   }
 
   setCityId = (selectedCityId) => {
+    console.log(selectedCityId)
     this.setState({
       cityId: selectedCityId
     })
