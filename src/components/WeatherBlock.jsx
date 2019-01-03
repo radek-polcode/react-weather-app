@@ -7,6 +7,11 @@ import WeatherDataParser from '../services/WeatherDataParser';
 import WeeklyWeatherList from './WeeklyWeatherList';
 import CityListJson from '../containers/city.list.min.json'
 
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const forecast5link = 'https://api.openweathermap.org/data/2.5/forecast?id='
+const apiKey = 'a23d2967a22cfa9a510a2c630aa76206'
+const units = '&units=metric'
+
 export default class WeatherBlock extends Component {
   constructor (props) {
     super(props)
@@ -23,17 +28,12 @@ export default class WeatherBlock extends Component {
 
   static propTypes = {}
   static defaultProps = {}
-  
-  componentDidMount() {
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const forecast5link = 'https://api.openweathermap.org/data/2.5/forecast?id='
-    const apiKey = 'a23d2967a22cfa9a510a2c630aa76206'
-    const units = '&units=metric'
-    
+
+  getOpenWeatherData = () => {
     let cityId = this.state.cityId
     let currentDay = new Date(this.state.currentDateTime).getDay()
     let dayName = days[currentDay]
-    
+
     axios
       .get(forecast5link + cityId + "&APPID=" + apiKey + units)
       .then(response => {
@@ -53,7 +53,11 @@ export default class WeatherBlock extends Component {
           }
         )
       })
-      .catch(error => console.log(error));     
+      .catch(error => console.log(error));
+  }
+  
+  componentDidMount() {
+    this.getOpenWeatherData()     
   }
 
   setCurrentDay = (selectedDay) => {
@@ -68,6 +72,7 @@ export default class WeatherBlock extends Component {
     this.setState({
       cityId: selectedCityId
     })
+    this.getOpenWeatherData() 
   }
 
   render() {
@@ -76,7 +81,7 @@ export default class WeatherBlock extends Component {
     const fiveDaysForecast = this.state.fiveDaysForecast
     const overallCityInfo = this.state.overallCityInfo
     const currentDateTimeWeather = this.state.currentDateTimeWeather
-
+    console.log(this.state)
     return(
       <div className="weather-block">
         <DailyWeatherBlock 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Autosuggest from 'react-autosuggest';
 
 import './Search.css';
-import CityListJson from '../../containers/city.list.min.json'
+import CityListJson from '../containers/city.list.min.json'
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
 const getSuggestions = value => {

@@ -4,7 +4,6 @@ import { Col, Row } from 'reactstrap';
 
 import { capitalizeText } from '../../utils/capitalizeText';
 import './OverallInfo.css';
-import Search from './Search'
 
 export default class OverallInfo extends Component {
   static defaultProps = {
@@ -17,11 +16,9 @@ export default class OverallInfo extends Component {
     cityInfo: PropTypes.object.isRequired,
     currentDay: PropTypes.string.isRequired,
     description: PropTypes.object.isRequired,
-    setCityId: PropTypes.func.isRequired
   }
 
   render () {
-    const setCityId = this.props.setCityId
     let cityName = this.props.cityInfo.name
     let country = this.props.cityInfo.country;
     let currentDay = this.props.currentDay;
@@ -31,7 +28,6 @@ export default class OverallInfo extends Component {
       <Row>
         <Col>
           <h2 className="city-info">{cityName}, {country}</h2>
-          <Search setCityId={setCityId}/>
           <p>{capitalizeText(currentDay)}</p>
           <p>{weatherDescription.weatherMain}, {weatherDescription.weatherDescription}</p>
         </Col>

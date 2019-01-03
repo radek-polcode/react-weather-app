@@ -17,7 +17,6 @@ export default class extends Component {
     overallCityInfo: PropTypes.object.isRequired,
     currentDateTimeWeather: PropTypes.object.isRequired,
     selectedDayForecast: PropTypes.object.isRequired,
-    setCityId: PropTypes.func.isRequired
   }
 
   static defaultProps = {
@@ -52,14 +51,12 @@ export default class extends Component {
                         )
     
     const setActiveButtonChart = this.setActiveButtonChart.bind(this)
-    const setCityId = this.props.setCityId
     return(
       <div>
         <OverallInfo 
           cityInfo={overallCityInfo}
           currentDay={currentDay}
           description={description}
-          setCityId={setCityId}
         />
         <DetailedInfo 
           currentDateTimeWeather={currentDateTimeWeather}
