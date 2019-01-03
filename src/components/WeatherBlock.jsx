@@ -76,7 +76,7 @@ export default class WeatherBlock extends Component {
     const fiveDaysForecast = this.state.fiveDaysForecast
     const overallCityInfo = this.state.overallCityInfo
     const currentDateTimeWeather = this.state.currentDateTimeWeather
-    console.log(this.state)
+
     return(
       <div className="weather-block">
         <DailyWeatherBlock 
