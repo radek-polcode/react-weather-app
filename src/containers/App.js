@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import axios from 'axios';
-import WeatherDataParser from '../services/WeatherDataParser';
+
 import DailyWeatherBlock from '../components/DailyWeatherBlock';
+import WeatherDataParser from '../services/WeatherDataParser';
 import WeeklyWeatherList from '../components/WeeklyWeatherList';
 
 import './App.css';

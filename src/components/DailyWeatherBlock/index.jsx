@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import './index.css';
-import OverallInfo from './OverallInfo';
 import DetailedInfo from './DetailedInfo';
 import DailyChart from './DailyChart';
+import OverallInfo from './OverallInfo';
+import Search from '../Search';
 import WeatherDataParser from '../../services/WeatherDataParser';
 
 export default class extends Component {
@@ -58,6 +59,7 @@ export default class extends Component {
           currentDay={currentDay}
           description={description}
         />
+        <Search />
         <DetailedInfo 
           currentDateTimeWeather={currentDateTimeWeather}
           onButtonClick={setActiveButtonChart}

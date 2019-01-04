@@ -25,7 +25,7 @@ export default class OverallInfo extends Component {
     let weatherDescription = this.props.description
 
     return (
-      <Row>
+      <Row className="overallInfo">
         <Col>
           <h2 className="city-info">{cityName}, {country}</h2>
           <p>{capitalizeText(currentDay)}</p>

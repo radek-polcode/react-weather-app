@@ -1,3 +1,7 @@
+.detailedInfo {
+  clear: both;
+}
+
 .detailedInfo__details {
   padding-top: 15px;
 }
