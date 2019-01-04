@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import './index.css';
 import DetailedInfo from './DetailedInfo';
 import DailyChart from './DailyChart';
 import OverallInfo from './OverallInfo';
