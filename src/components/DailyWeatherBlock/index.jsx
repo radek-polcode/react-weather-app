@@ -18,6 +18,7 @@ export default class extends Component {
     overallCityInfo: PropTypes.object.isRequired,
     currentDateTimeWeather: PropTypes.object.isRequired,
     selectedDayForecast: PropTypes.object.isRequired,
+    setCityId: PropTypes.func.isRequired
   }
 
   static defaultProps = {
@@ -59,7 +60,7 @@ export default class extends Component {
           currentDay={currentDay}
           description={description}
         />
-        <Search />
+        <Search setCityId={this.props.setCityId}/>
         <DetailedInfo 
           currentDateTimeWeather={currentDateTimeWeather}
           onButtonClick={setActiveButtonChart}

@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import axios from 'axios';
 
-import DailyWeatherBlock from '../components/DailyWeatherBlock';
-import WeatherDataParser from '../services/WeatherDataParser';
-import WeeklyWeatherList from '../components/WeeklyWeatherList';
-
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DailyWeatherBlock from '../components/DailyWeatherBlock';
 import Header from '../components/Header';
+import WeatherDataParser from '../services/WeatherDataParser';
+import WeeklyWeatherList from '../components/WeeklyWeatherList';
 
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const forecast5link = 'https://api.openweathermap.org/data/2.5/forecast?id='
@@ -21,7 +20,7 @@ class App extends Component {
   }
 
   state = {
-    cityId: '6356055',
+    cityId: '3094802',
     currentDateTime: new Date().getTime(),
     overallCityInfo: {},
     currentDateTimeWeather: {},
@@ -30,6 +29,10 @@ class App extends Component {
 
   static propTypes = {}
   static defaultProps = {}
+
+  componentDidMount() {
+    this.getOpenWeatherData()     
+  }
 
   getOpenWeatherData = () => {
     let cityId = this.state.cityId
@@ -58,10 +61,6 @@ class App extends Component {
       .catch(error => console.log(error));
   }
 
-  componentDidMount() {
-    this.getOpenWeatherData()     
-  }
-
   setCurrentDay = (selectedDay) => {
     this.setState({
       currentDay: selectedDay,
@@ -74,7 +73,12 @@ class App extends Component {
     this.setState({
       cityId: selectedCityId
     })
-    this.getOpenWeatherData() 
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.cityId !== prevState.cityId) {
+      this.getOpenWeatherData();
+    }
   }
 
   render() {
