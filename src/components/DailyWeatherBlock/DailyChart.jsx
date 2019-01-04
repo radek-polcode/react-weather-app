@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AreaChart, Area, XAxis } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis } from 'recharts';
 
 DailyChart.propTypes = {
   activeButtonChart: PropTypes.string.isRequired,
@@ -41,6 +41,12 @@ function DailyChart({ selectedDateWeather, activeButtonChart }) {
         margin={{ top: 25 }}
         width={600} 
       >
+        <YAxis
+          domain={['dataMin - 3', 'dataMax + 3']}
+          hide={true}
+          tick={false}
+          tickLine={false}
+        />
         <XAxis
           axisLine={false}
           dataKey="hour"
