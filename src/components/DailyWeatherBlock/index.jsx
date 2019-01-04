@@ -14,6 +14,7 @@ export default class extends Component {
   }
 
   static propTypes = {
+    cityList: PropTypes.array.isRequired,
     currentDay: PropTypes.string.isRequired,
     overallCityInfo: PropTypes.object.isRequired,
     currentDateTimeWeather: PropTypes.object.isRequired,
@@ -22,6 +23,7 @@ export default class extends Component {
   }
 
   static defaultProps = {
+    cityList: [],
     currentDay: '',
     overallCityInfo: {},
     currentDateTimeWeather: {},
@@ -35,6 +37,7 @@ export default class extends Component {
   }
 
   render() {
+    const cityList = this.props.cityList
     let activeButtonChart = this.state.activeButtonChart
     let currentDay = this.props.currentDay
     let currentDateTimeWeather = 
@@ -60,7 +63,10 @@ export default class extends Component {
           currentDay={currentDay}
           description={description}
         />
-        {/* <Search setCityId={this.props.setCityId}/> */}
+        <Search
+          cityList={cityList}
+          setCityId={this.props.setCityId}
+        />
         <DetailedInfo 
           currentDateTimeWeather={currentDateTimeWeather}
           onButtonClick={setActiveButtonChart}

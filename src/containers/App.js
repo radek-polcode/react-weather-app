@@ -21,18 +21,30 @@ class App extends Component {
 
   state = {
     cityId: '3094802',
+    cityList: [],
     currentDateTime: new Date().getTime(),
-    overallCityInfo: {},
     currentDateTimeWeather: {},
     fiveDaysForecast: {},
+    overallCityInfo: {},
   }
 
   static propTypes = {}
   static defaultProps = {}
 
   componentDidMount() {
+    this.getCityList()
     this.getOpenWeatherData()     
   }
+
+  getCityList() {
+    axios
+      .get('https://raw.githubusercontent.com/radek-polcode/react-weather-app/master/src/containers/_city.list.min.json')
+      .then(response => {
+        this.setState({
+          cityList: response.data
+        })
+      })
+    }
 
   getOpenWeatherData = () => {
     let cityId = this.state.cityId
@@ -69,7 +81,6 @@ class App extends Component {
   }
 
   setCityId = (selectedCityId) => {
-    console.log(selectedCityId)
     this.setState({
       cityId: selectedCityId
     })
@@ -82,6 +93,7 @@ class App extends Component {
   }
 
   render() {
+    const cityList = this.state.cityList
     let currentDay = this.state.currentDay
     let fiveDaysForecast = this.state.fiveDaysForecast
     let overallCityInfo = this.state.overallCityInfo
@@ -93,9 +105,10 @@ class App extends Component {
         <Container>
           <div className="weather-block">
             <DailyWeatherBlock 
+              cityList={cityList}
               currentDay={currentDay}
-              overallCityInfo={overallCityInfo}
               currentDateTimeWeather={currentDateTimeWeather}
+              overallCityInfo={overallCityInfo}
               selectedDayForecast={fiveDaysForecast[currentDay]}
               setCityId={this.setCityId}
             />

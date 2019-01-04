@@ -3,17 +3,16 @@ import PropTypes from 'prop-types'
 import Autosuggest from 'react-autosuggest';
 
 import './Search.css';
-import CityListJson from '../containers/city.list.min.json'
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
-const getSuggestions = value => {
+const getSuggestions = (value, cityListJson) => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
 
   if (inputLength < 3) {
     return [];
   } else if (inputLength >= 3) {
-    return CityListJson.filter(city =>
+    return cityListJson.filter(city =>
             city.name.toLowerCase().slice(0, inputLength) === inputValue
           )
   };
@@ -43,8 +42,9 @@ export default class Search extends Component {
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
+    const cityListJson = this.props.cityList
     this.setState({
-      suggestions: getSuggestions(value)
+      suggestions: getSuggestions(value, cityListJson)
     });
   };
 
