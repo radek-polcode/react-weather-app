@@ -60,7 +60,7 @@ export default class extends Component {
           currentDay={currentDay}
           description={description}
         />
-        <Search setCityId={this.props.setCityId}/>
+        {/* <Search setCityId={this.props.setCityId}/> */}
         <DetailedInfo 
           currentDateTimeWeather={currentDateTimeWeather}
           onButtonClick={setActiveButtonChart}
