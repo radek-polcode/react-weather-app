@@ -56,12 +56,11 @@ export default class Search extends Component {
 
   onChange = (e, { newValue }) => {
     const setCityId = this.props.setCityId
-
     this.setState({
       value: newValue,
     })
 
-    if (newValue.match(/[a-zA-Z]+,\s\d+/)){
+    if (newValue.match(/\D+\d+/)){
       let cityId = newValue.match(/\d+/)[0]
       this.setState({
         cityId: cityId
@@ -73,7 +72,8 @@ export default class Search extends Component {
 
   removeCityIdFromString (value) {
     if (value.match(/[a-zA-Z]+,\s\d+/)) {
-      return value.match(/[a-zA-Z]+/)[0]
+      let cityId = value.match(/,\s\d+/)[0]
+      return value.replace(cityId, '')
     } else {
       return value
     }
@@ -81,7 +81,6 @@ export default class Search extends Component {
 
   render() {
     const { value, suggestions } = this.state;
-
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
       placeholder: 'Type a city',
