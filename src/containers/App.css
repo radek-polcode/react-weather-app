@@ -18,3 +18,12 @@ h2, h3, p {
     transform: rotate(360deg);
   }
 }
+
+.weather-block {
+  border: solid 1px rgb(223, 225, 229);
+  height: 464px;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding: 20px 16px 24px 16px;
+  width: 630px;
+}
