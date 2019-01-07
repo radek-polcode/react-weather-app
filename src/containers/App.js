@@ -89,11 +89,19 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.state.cityId !== prevState.cityId) {
       this.getOpenWeatherData();
+
+      let currentDay = new Date(this.state.currentDateTime).getDay()
+      let currentDayName = days[currentDay]
+      this.setState({
+        currentDay: currentDayName,
+        currentDateTimeWeather: this.state.fiveDaysForecast[currentDayName]
+      })
     }
   }
 
   render() {
     const cityList = this.state.cityList
+    let cityId = this.state.cityId
     let currentDay = this.state.currentDay
     let fiveDaysForecast = this.state.fiveDaysForecast
     let overallCityInfo = this.state.overallCityInfo
@@ -112,7 +120,8 @@ class App extends Component {
               selectedDayForecast={fiveDaysForecast[currentDay]}
               setCityId={this.setCityId}
             />
-            <WeeklyWeatherList 
+            <WeeklyWeatherList
+              cityId={cityId}
               currentDay={currentDay}
               setCurrentDay={this.setCurrentDay}
               fiveDaysForecast={this.state.fiveDaysForecast}

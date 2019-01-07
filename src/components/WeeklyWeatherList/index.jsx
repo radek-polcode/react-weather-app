@@ -5,12 +5,21 @@ import SingleDayBlock from './SingleDayBlock';
 
 export default class extends Component {
   state = {
-    activeId: 0
+    activeId: 0,
+    cityId: this.props.cityId
   }
   
   static propTypes = {
     fiveDaysForecast: PropTypes.object.isRequired
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.cityId !== this.state.cityId)
+    this.setState({
+      activeId: 0,
+      cityId: nextProps.cityId
+    })
+}
 
   onDaySelect(index, selectedDay) {
     this.setState({
@@ -23,8 +32,6 @@ export default class extends Component {
   render() {
     const activeId = this.state.activeId;
     const onDaySelect = this.onDaySelect.bind(this)
-
-    //api
     const fiveDaysForecast = this.props.fiveDaysForecast
     const SingleDaysBlock = Object.keys(fiveDaysForecast).map(function(key, index) {
       return <SingleDayBlock 
