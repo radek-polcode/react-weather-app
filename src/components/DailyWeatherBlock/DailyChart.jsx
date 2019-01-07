@@ -32,6 +32,17 @@ function DailyChart({ selectedDateWeather, activeButtonChart }) {
         }
     }
   }
+
+  const setDomain = () => {
+    switch (activeButtonChart) {
+      case 'windButton':
+        return ['dataMin - 1', 'dataMax + 1']
+      case 'temperatureButton':
+      case 'pressureButton':
+      default:
+        return ['dataMin - 3', 'dataMax + 3']
+    }
+  }
   
   return (
     <div>
@@ -42,7 +53,7 @@ function DailyChart({ selectedDateWeather, activeButtonChart }) {
         width={600} 
       >
         <YAxis
-          domain={['dataMin - 3', 'dataMax + 3']}
+          domain={setDomain()}
           hide={true}
           tick={false}
           tickLine={false}
