@@ -37,18 +37,18 @@ export default class extends Component {
 
   render() {
     const cityList = this.props.cityList
-    let activeButtonChart = this.state.activeButtonChart
-    let currentDay = this.props.currentDay
-    let currentDateTimeWeather = 
+    const activeButtonChart = this.state.activeButtonChart
+    const currentDay = this.props.currentDay
+    const currentDateTimeWeather = 
       WeatherDataParser.getCurrentTimeDailyWeather(
                           this.props.selectedDayForecast.hourlyForecast
                         )
-    let description = { 
+    const description = { 
       weatherMain: currentDateTimeWeather['weatherMain'],
       weatherDescription: currentDateTimeWeather['weatherDescription']
     }
-    let overallCityInfo = this.props.overallCityInfo
-    let selectedDateChartData = 
+    const overallCityInfo = this.props.overallCityInfo
+    const selectedDateChartData = 
       WeatherDataParser.prepareDataForChart(
                           activeButtonChart,
                           this.props.selectedDayForecast.hourlyForecast

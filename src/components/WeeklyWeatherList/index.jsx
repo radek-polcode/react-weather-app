@@ -8,6 +8,11 @@ export default class extends Component {
     activeId: 0,
     cityId: this.props.cityId
   }
+
+  constructor(props) {
+    super(props)
+    this.onDaySelect = this.onDaySelect.bind(this)
+  }
   
   static propTypes = {
     fiveDaysForecast: PropTypes.object.isRequired
@@ -31,7 +36,7 @@ export default class extends Component {
 
   render() {
     const activeId = this.state.activeId;
-    const onDaySelect = this.onDaySelect.bind(this)
+    const onDaySelect = this.onDaySelect
     const fiveDaysForecast = this.props.fiveDaysForecast
     const SingleDaysBlock = Object.keys(fiveDaysForecast).map(function(key, index) {
       return <SingleDayBlock 
